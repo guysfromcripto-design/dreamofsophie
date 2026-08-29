@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aidez Sophia contre le cancer — Fonds d'aide médicale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --green: #02a95c; --green-dark: #028a4a; --green-light: #e6f7ef;
+    --text: #1f1f1f; --muted: #767676; --border: #e8e8e8;
+    --bg: #f8f8f8; --white: #ffffff; --radius: 10px;
+    --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+  .nav { background: var(--white); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+  .nav-inner { max-width: 1100px; margin: 0 auto; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { font-size: 22px; font-weight: 800; color: var(--green); letter-spacing: -0.5px; }
+  .nav-logo span { color: var(--text); }
+  .nav-right { display: flex; align-items: center; gap: 16px; }
+  .nav-btn { background: var(--green); color: white; border: none; padding: 8px 20px; border-radius: 30px; font-weight: 700; font-size: 14px; cursor: pointer; font-family: inherit; text-decoration: none; transition: background 0.2s; }
+  .nav-btn:hover { background: var(--green-dark); }
+  .nav-link { color: var(--text); font-weight: 600; font-size: 14px; text-decoration: none; }
+  .nav-link:hover { color: var(--green); }
+  .hero-banner { background: var(--white); border-bottom: 1px solid var(--border); padding: 12px 20px; }
+  .hero-banner-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  .banner-raised { font-size: 15px; color: var(--muted); }
+  .banner-raised strong { color: var(--text); font-size: 16px; }
+  .banner-donate-link { color: var(--green); font-weight: 700; font-size: 14px; text-decoration: none; display: flex; align-items: center; gap: 4px; }
+  .banner-actions { display: flex; gap: 10px; align-items: center; }
+  .btn-primary { background: var(--green); color: white; border: none; padding: 10px 24px; border-radius: 30px; font-weight: 700; font-size: 15px; cursor: pointer; font-family: inherit; text-decoration: none; transition: background 0.2s, transform 0.1s; display: inline-block; }
+  .btn-primary:hover { background: var(--green-dark); transform: translateY(-1px); }
+  .btn-secondary { background: var(--white); color: var(--text); border: 2px solid var(--border); padding: 9px 22px; border-radius: 30px; font-weight: 700; font-size: 15px; cursor: pointer; font-family: inherit; text-decoration: none; transition: border-color 0.2s; display: inline-block; }
+  .btn-secondary:hover { border-color: var(--text); }
+  .main { max-width: 1100px; margin: 28px auto; padding: 0 20px; display: grid; grid-template-columns: 1fr 380px; gap: 28px; align-items: start; }
+  .organizer-chip { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .avatar-circle { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #02a95c, #0277bd); display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 15px; flex-shrink: 0; }
+  .organizer-name { font-weight: 700; font-size: 15px; }
+  .organizer-label { color: var(--muted); font-size: 13px; }
+  .campaign-title { font-size: 26px; font-weight: 800; line-height: 1.25; margin-bottom: 20px; color: var(--text); }
+  .main-photo { width: 100%; border-radius: var(--radius); display: block; object-fit: cover; max-height: 480px; background: #eee; }
+  .progress-section-inline { display: none; }
+  .story { margin-top: 24px; font-size: 16px; line-height: 1.75; color: var(--text); }
+  .story p { margin-bottom: 16px; }
+  .story h3 { font-size: 19px; font-weight: 800; margin: 24px 0 12px; color: var(--text); }
+  .story blockquote { border-left: 4px solid var(--green); padding: 10px 18px; background: var(--green-light); border-radius: 0 8px 8px 0; font-style: italic; font-weight: 700; margin: 18px 0; font-size: 17px; }
+  .story ul { list-style: none; padding: 0; margin: 0 0 16px; }
+  .story ul li { padding: 6px 0; font-size: 15px; }
+  .story strong { color: var(--text); }
+  .story img { width: 100%; border-radius: var(--radius); margin: 20px 0; display: block; }
+  .donate-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 24px 0; }
+  .donate-card { border: 2px solid var(--border); border-radius: var(--radius); padding: 14px 10px; text-align: center; text-decoration: none; color: var(--text); transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s; display: block; background: var(--white); }
+  .donate-card:hover { border-color: var(--green); box-shadow: 0 4px 16px rgba(2,169,92,0.15); transform: translateY(-2px); }
+  .donate-card .amount { font-size: 22px; font-weight: 800; color: var(--green); display: block; }
+  .donate-card .desc { font-size: 11px; color: var(--muted); margin-top: 4px; display: block; line-height: 1.4; }
+  .donate-cta { text-align: center; color: var(--muted); font-size: 13px; margin-top: -4px; margin-bottom: 20px; }
+  .donate-cta .lock-icon { margin-right: 4px; }
+  .video-section { margin-top: 36px; }
+  .video-section h2 { font-size: 20px; font-weight: 800; margin-bottom: 14px; }
+  .video-thumb { position: relative; border-radius: var(--radius); overflow: hidden; cursor: pointer; }
+  .video-thumb img { width: 100%; display: block; object-fit: cover; height: 240px; filter: brightness(0.8); transition: filter 0.2s; }
+  .video-thumb:hover img { filter: brightness(0.7); }
+  .play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; height: 60px; background: rgba(255,255,255,0.92); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; box-shadow: 0 4px 20px rgba(0,0,0,0.25); }
+  .card { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); padding: 22px; margin-bottom: 20px; }
+  .raised-amount { font-size: 26px; font-weight: 800; color: var(--text); }
+  .goal-text { font-size: 14px; color: var(--muted); margin-bottom: 12px; margin-top: 2px; }
+  .progress-bar-bg { height: 8px; background: var(--border); border-radius: 99px; margin-bottom: 10px; overflow: hidden; }
+  .progress-bar-fill { height: 100%; background: var(--green); border-radius: 99px; width: 81%; transition: width 1s ease; }
+  .progress-pct { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
+  .progress-pct strong { color: var(--text); }
+  .btn-donate-big { display: block; width: 100%; background: var(--green); color: white; border: none; padding: 14px; border-radius: 30px; font-weight: 800; font-size: 17px; cursor: pointer; font-family: inherit; text-align: center; text-decoration: none; transition: background 0.2s, transform 0.1s; margin-bottom: 10px; }
+  .btn-donate-big:hover { background: var(--green-dark); transform: translateY(-1px); }
+  .btn-share-big { display: block; width: 100%; background: var(--white); color: var(--text); border: 2px solid var(--border); padding: 12px; border-radius: 30px; font-weight: 700; font-size: 15px; cursor: pointer; font-family: inherit; text-align: center; text-decoration: none; transition: border-color 0.2s; margin-bottom: 18px; }
+  .btn-share-big:hover { border-color: var(--text); }
+  .urgency-badge { background: #fff3e0; border: 1px solid #ffb300; border-radius: 8px; padding: 10px 14px; font-size: 13px; color: #6d4c00; font-weight: 700; margin-bottom: 18px; display: flex; align-items: center; gap: 8px; }
+  .stat-row { display: flex; gap: 10px; margin-bottom: 18px; }
+  .stat-chip { flex: 1; background: var(--bg); border-radius: 8px; padding: 10px 12px; text-align: center; }
+  .stat-chip .val { font-size: 18px; font-weight: 800; color: var(--green); display: block; }
+  .stat-chip .lbl { font-size: 11px; color: var(--muted); }
+  .meta-list { list-style: none; padding: 0; margin-bottom: 0; }
+  .meta-list li { padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+  .meta-list li:last-child { border-bottom: none; }
+  .meta-list li strong { color: var(--text); }
+  .donors-section { margin-top: 36px; }
+  .donors-section h2 { font-size: 20px; font-weight: 800; margin-bottom: 6px; }
+  .donors-count { font-size: 14px; color: var(--muted); margin-bottom: 16px; }
+  .donor-item { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .donor-item:last-child { border-bottom: none; }
+  .donor-avatar { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px; color: white; flex-shrink: 0; }
+  .donor-info { flex: 1; }
+  .donor-name { font-weight: 700; font-size: 14px; }
+  .donor-time { font-size: 12px; color: var(--muted); }
+  .donor-amount { font-weight: 800; color: var(--green); font-size: 15px; }
+  .see-all-btn { display: block; width: 100%; text-align: center; background: none; border: 2px solid var(--border); padding: 10px; border-radius: 30px; font-weight: 700; font-size: 14px; cursor: pointer; font-family: inherit; margin-top: 16px; transition: border-color 0.2s; color: var(--text); }
+  .see-all-btn:hover { border-color: var(--text); }
+  .co-org { margin-top: 36px; }
+  .co-org h2 { font-size: 20px; font-weight: 800; margin-bottom: 16px; }
+  .co-org-item { display: flex; align-items: center; gap: 14px; }
+  .co-org-name { font-weight: 700; font-size: 15px; }
+  .co-org-role { font-size: 13px; color: var(--muted); }
+  .co-org-loc { font-size: 13px; color: var(--muted); }
+  .trust-section { max-width: 1100px; margin: 48px auto 0; padding: 0 20px 48px; }
+  .trust-section h2 { font-size: 22px; font-weight: 800; text-align: center; margin-bottom: 28px; }
+  .trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .trust-card { background: var(--white); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); text-align: center; }
+  .trust-icon { font-size: 32px; margin-bottom: 12px; }
+  .trust-card h3 { font-size: 17px; font-weight: 800; margin-bottom: 8px; }
+  .trust-card p { font-size: 14px; color: var(--muted); line-height: 1.5; }
+  .security-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: center; margin: 18px 0; padding: 16px; background: var(--bg); border-radius: 8px; border: 1px solid var(--border); }
+  .security-badge { font-size: 11px; font-weight: 700; color: var(--muted); display: flex; align-items: center; gap: 4px; background: white; padding: 6px 12px; border-radius: 20px; border: 1px solid var(--border); }
+  footer { background: var(--white); border-top: 1px solid var(--border); padding: 32px 20px; text-align: center; }
+  .footer-inner { max-width: 1100px; margin: 0 auto; }
+  .footer-logo { font-size: 20px; font-weight: 800; color: var(--green); margin-bottom: 12px; }
+  .footer-links { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+  .footer-links a { font-size: 13px; color: var(--muted); text-decoration: none; }
+  .footer-links a:hover { color: var(--text); }
+  .footer-copy { font-size: 12px; color: var(--muted); }
+  .sticky-bar { display: none; }
+  @media (max-width: 760px) {
+    .sticky-bar { display: block; position: fixed; bottom: 0; left: 0; right: 0; background: var(--white); border-top: 1px solid var(--border); border-radius: 18px 18px 0 0; box-shadow: 0 -4px 20px rgba(0,0,0,0.10); padding: 14px 18px 22px; z-index: 200; }
+    .sticky-bar-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .sticky-bar-raised { font-size: 15px; font-weight: 800; color: var(--text); }
+    .sticky-bar-raised span { color: var(--muted); font-weight: 600; }
+    .sticky-bar-link { font-size: 13px; font-weight: 700; color: var(--green); text-decoration: none; }
+    .sticky-bar-btns { display: flex; gap: 12px; }
+    .sticky-bar-btns a { flex: 1; text-align: center; padding: 13px 10px; border-radius: 30px; font-weight: 800; font-size: 16px; font-family: inherit; text-decoration: none; transition: opacity 0.2s; }
+    .sticky-bar-btns a:active { opacity: 0.85; }
+    .sticky-btn-donate { background: #a8e063; color: #1a3a1a; }
+    .sticky-btn-share { background: #1a3a1a; color: #a8e063; }
+    body { padding-bottom: 110px; }
+  }
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 999; align-items: center; justify-content: center; padding: 20px; }
+  .modal-overlay.open { display: flex; }
+  .modal-box { background: var(--white); border-radius: 14px; max-width: 620px; width: 100%; max-height: 80vh; overflow-y: auto; padding: 32px 28px 28px; position: relative; box-shadow: 0 8px 40px rgba(0,0,0,0.18); animation: modalIn 0.2s ease; }
+  @keyframes modalIn { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  .modal-close { position: absolute; top: 14px; right: 16px; background: var(--bg); border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--muted); transition: background 0.15s; }
+  .modal-close:hover { background: var(--border); color: var(--text); }
+  .modal-title { font-size: 20px; font-weight: 800; margin-bottom: 16px; padding-right: 28px; color: var(--text); }
+  .modal-body { font-size: 14px; color: #444; line-height: 1.75; }
+  .modal-body h4 { font-size: 15px; font-weight: 700; margin: 18px 0 6px; color: var(--text); }
+  .modal-body p { margin-bottom: 12px; }
+  .report-link { font-size: 13px; color: var(--muted); cursor: pointer; text-decoration: underline; margin-top: 12px; display: inline-block; }
+  @media (max-width: 760px) {
+    .main { grid-template-columns: 1fr; }
+    .right-col { display: none; }
+    .progress-section-inline { display: block; }
+    .hero-banner { display: none; }
+    .donate-grid { grid-template-columns: repeat(2, 1fr); }
+    .trust-grid { grid-template-columns: 1fr; }
+    .nav-right { gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">Give<span>fy</span></div>
+    <div class="nav-right">
+      <a href="#" class="nav-link"></a>
+      <a href="#spenden-bereich" class="nav-btn">Faire un don</a>
+    </div>
+  </div>
+</nav>
+
+<div class="hero-banner">
+  <div class="hero-banner-inner">
+    <div><span class="banner-raised"><strong>216 000 € collectés</strong> sur 268 000 €</span></div>
+    <a href="#spenden-bereich" class="banner-donate-link">Faire un don pour Sophia ›</a>
+    <div class="banner-actions">
+      <a href="#spenden-bereich" class="btn-primary">Faire un don</a>
+      <a href="#" class="btn-secondary" onclick="partager(); return false;">Partager</a>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="left-col">
+    <div class="organizer-chip">
+      <div class="avatar-circle">M</div>
+      <div>
+        <div class="organizer-name">Markus — Le père de Sophia</div>
+        <div class="organizer-label">Organisateur de la cagnotte</div>
+      </div>
+    </div>
+
+    <h1 class="campaign-title">Aidez Sophia : thérapie VAC contre le rhabdomyosarcome</h1>
+
+    <img class="main-photo" src="https://i.ibb.co/zVqp27q3/850457796-139071068-signal-2025-11-19-233926.jpg" alt="Sophia — une petite fille qui lutte contre le cancer" />
+
+    <div class="progress-section-inline card" style="margin-top:20px;">
+      <div class="urgency-badge">⚠️ 2 MOIS MAXIMUM — Le traitement doit commencer d'urgence</div>
+      <div class="raised-amount">216 000 €</div>
+      <div class="goal-text">collectés sur 268 000 €</div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
+      <div class="progress-pct"><strong>81 %</strong> atteints · encore 52 000 € manquants</div>
+      <div class="stat-row">
+        <div class="stat-chip"><span class="val">1 247</span><span class="lbl">Donateurs</span></div>
+        <div class="stat-chip"><span class="val">173 €</span><span class="lbl">Don moyen</span></div>
+        <div class="stat-chip"><span class="val">70 %</span><span class="lbl">Chance de guérison</span></div>
+      </div>
+      <a href="#spenden-bereich" class="btn-donate-big">Faire un don</a>
+      <a href="#" class="btn-share-big" onclick="partager(); return false;">📤 Partager la cagnotte</a>
+      <div class="security-row">
+        <span class="security-badge">🔒 SSL 256 bits</span>
+        <span class="security-badge">✅ PCI DSS</span>
+        <span class="security-badge">💳 Visa & MC</span>
+      </div>
+      <ul class="meta-list">
+        <li>🕐 <span>Créée <strong>il y a 5 jours</strong></span></li>
+        <li>🏷️ <span><strong>Urgence médicale</strong></span></li>
+        <li>🛡️ <span>Protégée par la garantie Givefy</span></li>
+        <li>📧 <span>Tous les donateurs reçoivent des <strong>mises à jour en temps réel</strong></span></li>
+      </ul>
+    </div>
+
+    <div class="story">
+      <p>Je m'appelle <strong>Markus</strong>, et je suis le père de trois merveilleuses filles : Lívia, Ana et ma cadette, Sophia.</p>
+      <p>Depuis la mort de ma femme en 2023, j'essaie d'être tout pour elles : père, mère, ami, héros. Quand on est père, on a l'impression que le monde tourne autour de ses enfants — et pour moi, c'est exactement ça.</p>
+      <p>Mais aujourd'hui… aujourd'hui je me sens comme rien du tout.</p>
+      <p>Sophia, mon petit bout de paradis, a reçu un diagnostic de tumeur rare appelée <strong>rhabdomyosarcome</strong>. C'est un cancer agressif qui vole petit à petit la joie de vivre à ma fille — une enfant qui a toujours été joyeuse, souriante et pleine d'amour.</p>
+      <p>Maintenant, elle passe ses journées avec des douleurs qu'elle appelle <em>« du feu dans le ventre »</em>.</p>
+      <blockquote>« Papa, ça fait tellement mal. »</blockquote>
+      <p>Mon cœur s'est brisé là, encore une fois.</p>
+
+      <h3>🏗️ Travailler jusqu'à n'en plus pouvoir</h3>
+      <p>Je travaille du matin au soir comme ouvrier du bâtiment — je monte sur les échafaudages, je porte du ciment, je travaille jusqu'à l'os, parce que je ne sais rien faire d'autre. Mais même comme ça, ce que je gagne suffit à peine à payer les factures de la maison. Élever trois filles, c'est plus dur aujourd'hui, surtout avec la situation actuelle du pays.</p>
+      <p>Je les aime, et je ne regretterai jamais d'avoir eu mes filles. Mais malheureusement, ma femme est partie — et maintenant le cancer est entré dans la vie de ma fille. Il est arrivé sans prévenir, complètement par surprise, sans aucune pitié pour elle — juste une enfant innocente.</p>
+
+      <img src="https://i.ibb.co/7Njmmx3x/602561059-979009327-signal-2025-11-19-233937.jpg" alt="Matériel médical pour le traitement de Sophia" />
+
+      <h3>💊 Le seul espoir : la thérapie VAC</h3>
+      <p>Quand le médecin m'a dit que le traitement de Sophia n'était pas pris en charge par le système de santé public, j'avais envie de crier de rage. Ils n'ont même pas pitié d'un enfant.</p>
+      <p>Le sarcome est au <strong>stade 3</strong> — la tumeur fait plus de 5 cm, mais Dieu merci, il n'y a pas encore de métastases. <strong>Si le traitement commence vite, les médecins disent que les chances de guérison sont supérieures à 70 %.</strong> Mais chaque minute qui passe, ses chances diminuent.</p>
+
+      <h3>💰 Les coûts impossibles</h3>
+      <p>Elle a besoin d'un traitement appelé « thérapie VAC » — composé de trois médicaments : <strong>vincristine, actinomycine-D et cyclophosphamide</strong>. Le traitement complet dure environ 18 mois, à 7 000 € par cycle mensuel. Le coût total s'élève à <strong>268 000 EUR</strong> — de l'argent que je ne verrai jamais de toute ma vie, même en travaillant jusqu'à l'épuisement.</p>
+      <p>Sur ce montant, environ <strong>216 000 € ont déjà été collectés</strong> grâce à des personnes généreuses comme vous. Nous sommes si près du but — mais la dernière étape est la plus dure.</p>
+      <p>J'ai déjà vendu tout ce que j'ai pu : la vieille voiture, les meubles du salon, même l'alliance de ma femme. Mais il manque encore de l'argent.</p>
+
+      <h3 id="spenden-bereich">❤️ Choisissez un montant pour aider Sophia</h3>
+      <div class="donate-grid">
+        <a class="donate-card" href="https://buy.stripe.com/7sY4gsaRJ2EzaWT9Ck83C06"><span class="amount">25 €</span><span class="desc">☕ Même les petits montants aident — chaque euro compte</span></a>
+        <a class="donate-card" href="https://buy.stripe.com/7sY28k4tl3ID9SPg0I83C07"><span class="amount">49 €</span><span class="desc">💊 Aide à acheter des médicaments vitaux</span></a>
+        <a class="donate-card" href="https://buy.stripe.com/5kQfZa7Fx7YT6GD01K83C08"><span class="amount">99 €</span><span class="desc">🏥 Couvre une partie d'une séance de chimiothérapie</span></a>
+        <a class="donate-card" href="https://buy.stripe.com/cNi00cbVN7YT0if4i083C09"><span class="amount">199 €</span><span class="desc">🙏 Apporte de l'espoir — une grande contribution pour la sauver</span></a>
+        <a class="donate-card" href="https://buy.stripe.com/4gM5kwaRJfrl4yv8yg83C0a"><span class="amount">399 €</span><span class="desc">❤️ Soyez l'ange qui sauve la vie de Sophia</span></a>
+      </div>
+      <p class="donate-cta"><span class="lock-icon">🔒</span> Chiffrement SSL 256 bits · Conforme PCI DSS · 100 % sécurisé</p>
+
+      <img src="https://i.ibb.co/HTpfQyNX/286723239-516016700-signal-2025-11-19-233948.jpg" alt="Aidez Sophia s'il vous plaît" />
+
+      <h3>⏰ Le temps presse</h3>
+      <p>Les médecins ont dit que si on ne commence pas le traitement dans un délai de <strong>2 mois maximum</strong>, la tumeur pourrait passer au stade 4 avec des métastases. La priorité maintenant, c'est d'agir vite et d'arrêter l'aggravation.</p>
+      <p>Je ne suis qu'un père qui donnerait sa propre vie pour sauver sa fille.</p>
+      <p>Chaque jour, ma fille me demande de lui lire la Bible. Ça me brise le cœur quand elle dit qu'avec maman, elle veillera sur moi depuis le ciel.</p>
+
+      <img src="https://i.ibb.co/8HCP9jY/343188219-625301841-signal-2025-11-19-233956.jpg" alt="Aidez Sophia s'il vous plaît" />
+
+      <p>S'il vous plaît, si vous croyez en Dieu — <strong>cliquez plus haut et faites un don</strong>. Que vous puissiez donner beaucoup ou peu, merci du fond du cœur.</p>
+      <p><strong>Dieu est témoin de votre sacrifice, et vous en serez récompensé au septuple.</strong></p>
+      <p>En choisissant de faire un don, vous décidez du destin de ma fille. Si la plupart des gens font un don, ses chances augmentent énormément.</p>
+      <blockquote>La vie d'un enfant a-t-elle un prix ? Dans le cas de Sophia, oui — et elle est maintenant entre vos mains.</blockquote>
+    </div>
+
+    <div class="video-section">
+      <h2>L'histoire de Sophia 🙏</h2>
+      <div class="video-thumb">
+        <img src="https://i.ibb.co/zVqp27q3/850457796-139071068-signal-2025-11-19-233926.jpg" alt="L'histoire de Sophia" />
+        <div class="play-btn">▶</div>
+      </div>
+    </div>
+
+    <div class="donors-section">
+      <h2>Dons <span style="font-weight:400;font-size:16px;color:var(--muted)">1 247</span></h2>
+      <p class="donors-count">Voir les meilleurs dons</p>
+      <div id="donor-list">
+        <div class="donor-item"><div class="donor-avatar" style="background:#4caf50;">J</div><div class="donor-info"><div class="donor-name">Julie Dubois</div><div class="donor-time">il y a 2 heures</div></div><div class="donor-amount">199 €</div></div>
+        <div class="donor-item"><div class="donor-avatar" style="background:#2196f3;">R</div><div class="donor-info"><div class="donor-name">Robert Laurent</div><div class="donor-time">il y a 1 heure</div></div><div class="donor-amount">99 €</div></div>
+        <div class="donor-item"><div class="donor-avatar" style="background:#e91e63;">S</div><div class="donor-info"><div class="donor-name">Sandra Moreau</div><div class="donor-time">il y a 3 heures</div></div><div class="donor-amount">399 €</div></div>
+        <div class="donor-item"><div class="donor-avatar" style="background:#ff9800;">D</div><div class="donor-info"><div class="donor-name">Didier Lambert</div><div class="donor-time">il y a 9 minutes</div></div><div class="donor-amount">149 €</div></div>
+        <div class="donor-item"><div class="donor-avatar" style="background:#9c27b0;">A</div><div class="donor-info"><div class="donor-name">Anne Leroy</div><div class="donor-time">il y a 5 heures</div></div><div class="donor-amount">49 €</div></div>
+        <div class="donor-item"><div class="donor-avatar" style="background:#009688;">C</div><div class="donor-info"><div class="donor-name">Claude Bernard</div><div class="donor-time">à l'instant</div></div><div class="donor-amount">99 €</div></div>
+      </div>
+      <button class="see-all-btn">Voir les 1 247 donateurs</button>
+    </div>
+
+    <div class="co-org">
+      <h2>Organisateur</h2>
+      <div class="co-org-item">
+        <div class="avatar-circle" style="width:52px;height:52px;font-size:18px;">M</div>
+        <div>
+          <div class="co-org-name">Markus (le père de Sophia)</div>
+          <div class="co-org-role">Organisateur</div>
+          <div class="co-org-loc">États-Unis</div>
+        </div>
+      </div>
+      <ul class="meta-list" style="margin-top:16px;">
+        <li>🕐 <span>Créée <strong>il y a 5 jours</strong></span></li>
+        <li>🏷️ <span>Catégorie : <strong>Urgence médicale</strong></span></li>
+        <li>🛡️ <span>Don protégé</span></li>
+      </ul>
+      <span class="report-link">Signaler la cagnotte</span>
+    </div>
+  </div>
+
+  <div class="right-col">
+    <div class="card" style="position:sticky;top:80px;">
+      <div class="urgency-badge">⚠️ 2 MOIS MAXIMUM — Le traitement doit commencer d'urgence</div>
+      <div class="raised-amount">216 000 €</div>
+      <div class="goal-text">collectés sur 268 000 €</div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
+      <div class="progress-pct"><strong>81 %</strong> atteints · encore 52 000 € manquants</div>
+      <div class="stat-row">
+        <div class="stat-chip"><span class="val">1 247</span><span class="lbl">Donateurs</span></div>
+        <div class="stat-chip"><span class="val">173 €</span><span class="lbl">Don moyen</span></div>
+        <div class="stat-chip"><span class="val">70 %</span><span class="lbl">Chance de guérison</span></div>
+      </div>
+      <a href="#spenden-bereich" class="btn-donate-big">Faire un don</a>
+      <a href="#" class="btn-share-big" onclick="partager(); return false;">📤 Partager la cagnotte</a>
+      <div class="security-row">
+        <span class="security-badge">🔒 SSL 256 bits</span>
+        <span class="security-badge">✅ PCI DSS</span>
+        <span class="security-badge">💳 Visa & MC</span>
+      </div>
+      <ul class="meta-list">
+        <li>🕐 <span>Créée <strong>il y a 5 jours</strong></span></li>
+        <li>🏷️ <span><strong>Urgence médicale</strong></span></li>
+        <li>🛡️ <span>Protégée par la garantie Givefy</span></li>
+        <li>📧 <span>Tous les donateurs reçoivent des <strong>mises à jour en temps réel</strong></span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="trust-section">
+  <h2>Votre endroit simple, puissant et fiable pour aider</h2>
+  <div class="trust-grid">
+    <div class="trust-card"><div class="trust-icon">⚡</div><h3>Simple</h3><p>Faites un don rapide et facile — votre soutien arrive à Sophia en quelques minutes.</p></div>
+    <div class="trust-card"><div class="trust-icon">💪</div><h3>Efficace</h3><p>Aidez directement les personnes et les causes qui vous tiennent à cœur.</p></div>
+    <div class="trust-card"><div class="trust-icon">🛡️</div><h3>Fiable</h3><p>Votre don est protégé par la garantie de don Givefy.</p></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Givefy</div>
+    <div class="footer-links">
+      <a href="#" onclick="ouvrirModal('terms'); return false;">Conditions d'utilisation</a>
+      <a href="#" onclick="ouvrirModal('privacy'); return false;">Confidentialité</a>
+      <a href="#" onclick="ouvrirModal('legal'); return false;">Mentions légales</a>
+      <a href="#" onclick="ouvrirModal('accessibility'); return false;">Accessibilité</a>
+      <a href="#" onclick="ouvrirModal('cookies'); return false;">Politique relative aux cookies</a>
+    </div>
+    <p class="footer-copy">© 2010–2026 Givefy. Tous droits réservés.</p>
+  </div>
+</footer>
+
+<div class="sticky-bar">
+  <div class="sticky-bar-top">
+    <div class="sticky-bar-raised">216 000 € collectés <span>sur 268 000 €</span></div>
+    <a href="#spenden-bereich" class="sticky-bar-link">Faire un don pour Sophia ›</a>
+  </div>
+  <div class="sticky-bar-btns">
+    <a class="sticky-btn-donate" href="#spenden-bereich">Donner</a>
+    <a class="sticky-btn-share" href="#" onclick="partager(); return false;">Partager</a>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-overlay" onclick="fermerModalExterieur(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="fermerModal()">✕</button>
+    <div class="modal-title" id="modal-title"></div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+  const modalContent = {
+    terms: { title: 'Conditions d\'utilisation', body: `<p>Dernière mise à jour : 1er janvier 2026</p><p>En accédant à cette plateforme de dons, vous acceptez les présentes conditions d'utilisation. Veuillez les lire attentivement avant de faire un don.</p><h4>1. Utilisation de la plateforme</h4><p>Cette plateforme sert uniquement à faciliter des dons caritatifs entre particuliers. Vous vous engagez à l'utiliser uniquement à des fins légales. Toute activité frauduleuse ou illégale peut entraîner la résiliation de votre accès.</p><h4>2. Dons</h4><p>Tous les dons effectués via cette plateforme sont volontaires. Une fois traité, le don est versé directement à l'organisateur de la cagnotte. Nous ne garantissons pas le résultat d'une cagnotte ni l'usage des fonds par le bénéficiaire.</p><h4>3. Cagnottes</h4><p>Les organisateurs de cagnottes sont seuls responsables de l'exactitude des informations fournies dans leurs cagnottes. Nous nous réservons le droit de retirer les cagnottes qui violent nos règles ou la loi en vigueur.</p><h4>4. Frais</h4><p>Des frais de plateforme modestes peuvent s'appliquer à chaque don. Ces frais sont clairement indiqués au moment du don.</p><h4>5. Modifications</h4><p>Nous nous réservons le droit de modifier ces conditions à tout moment. L'utilisation continue de la plateforme après modification vaut acceptation des nouvelles conditions.</p>` },
+    privacy: { title: 'Politique de confidentialité', body: `<p>Dernière mise à jour : 1er janvier 2026</p><p>Votre vie privée nous tient à cœur. Cette politique explique comment nous collectons, utilisons et protégeons vos données personnelles.</p><h4>1. Données collectées</h4><p>Nous collectons les données que vous nous communiquez directement, comme le nom, l'adresse e-mail et les informations de paiement lors d'un don. Nous collectons aussi des informations techniques comme l'adresse IP et le type de navigateur.</p><h4>2. Utilisation des données</h4><p>Nous utilisons ces données pour traiter les dons, communiquer sur vos transactions et améliorer notre plateforme. Nous ne vendons pas vos données à des tiers.</p><h4>3. Sécurité des données</h4><p>Nous utilisons des mesures de sécurité standard du secteur, notamment le chiffrement SSL 256 bits et la conformité PCI DSS, pour protéger vos données personnelles et financières.</p><h4>4. Vos droits</h4><p>Vous avez le droit d'accéder à vos données personnelles, de les corriger ou de les supprimer à tout moment. Contactez notre équipe d'assistance pour exercer ces droits.</p>` },
+    legal: { title: 'Mentions légales', body: `<p>Dernière mise à jour : 1er janvier 2026</p><h4>Clause de non-responsabilité</h4><p>Cette plateforme et son contenu sont fournis « en l'état » et « selon disponibilité », sans aucune garantie explicite ou implicite.</p><h4>Limitation de responsabilité</h4><p>Dans la limite autorisée par la loi, nous ne sommes pas responsables des dommages indirects, accessoires, spéciaux ou consécutifs découlant de votre utilisation de la plateforme.</p><h4>Droit applicable</h4><p>Ces conditions sont régies par le droit de la juridiction compétente, sans tenir compte des règles de conflit de lois.</p><h4>Contact</h4><p>Pour toute question juridique, veuillez contacter notre équipe juridique via les canaux officiels de la plateforme.</p>` },
+    accessibility: { title: 'Déclaration d\'accessibilité', body: `<p>Dernière mise à jour : 1er janvier 2026</p><p>Nous nous efforçons de rendre notre plateforme accessible à tous, y compris aux personnes en situation de handicap, conformément aux WCAG 2.1 niveau AA.</p><h4>Notre engagement</h4><p>Nous travaillons en permanence à améliorer l'accessibilité de notre plateforme pour que tous les utilisateurs puissent profiter de nos services avec facilité et dignité.</p><h4>Mesures prises</h4><p>Notre plateforme prend en charge la navigation au clavier, fournit des textes alternatifs pour toutes les images importantes et est compatible avec les principaux lecteurs d'écran.</p><h4>Retours</h4><p>Si vous rencontrez des obstacles, contactez notre équipe d'assistance. Nous répondons sous 2 jours ouvrables.</p>` },
+    cookies: { title: 'Politique relative aux cookies', body: `<p>Dernière mise à jour : 1er janvier 2026</p><p>Cette politique explique ce que sont les cookies et comment nous les utilisons sur notre plateforme.</p><h4>Que sont les cookies ?</h4><p>Les cookies sont de petits fichiers texte enregistrés sur votre appareil quand vous visitez un site web. Ils sont souvent utilisés pour faire fonctionner les sites de manière plus efficace.</p><h4>Types de cookies utilisés</h4><p><strong>Cookies essentiels :</strong> nécessaires au bon fonctionnement de la plateforme.</p><p><strong>Cookies d'analyse :</strong> nous aident à comprendre comment les visiteurs interagissent avec notre plateforme.</p><p><strong>Cookies de préférences :</strong> enregistrent vos paramètres pour une expérience personnalisée.</p><p><strong>Cookies marketing :</strong> utilisés avec votre accord pour des informations pertinentes sur les cagnottes.</p><h4>Gestion des cookies</h4><p>Vous pouvez gérer les cookies via les paramètres de votre navigateur. Notez que désactiver certains cookies peut réduire la fonctionnalité de la plateforme.</p>` }
+  };
+
+  function ouvrirModal(key) {
+    const c = modalContent[key];
+    document.getElementById('modal-title').textContent = c.title;
+    document.getElementById('modal-body').innerHTML = c.body;
+    document.getElementById('modal-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function fermerModal() {
+    document.getElementById('modal-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function fermerModalExterieur(e) {
+    if (e.target === document.getElementById('modal-overlay')) fermerModal();
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') fermerModal(); });
+
+  function partager() {
+    if (navigator.share) {
+      navigator.share({ title: 'Aidez Sophia contre le cancer', text: 'Sophia lutte contre un rhabdomyosarcome. Aidez son père à financer la thérapie VAC.', url: window.location.href });
+    } else {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        alert('Lien copié ! Partagez-le avec vos amis et votre famille. 🙏');
+      });
+    }
+  }
+
+  window.addEventListener('load', () => {
+    setTimeout(() => { document.querySelectorAll('.progress-bar-fill').forEach(el => { el.style.width = '81%'; }); }, 300);
+  });
+
+  const extraDonors = [
+    { name: 'Émilie Petit', amount: '99 €', color: '#f44336', time: 'à l\'instant' },
+    { name: 'Michel Durand', amount: '149 €', color: '#3f51b5', time: 'à l\'instant' },
+    { name: 'Pauline Blanc', amount: '49 €', color: '#795548', time: 'à l\'instant' },
+    { name: 'Thomas Legrand', amount: '199 €', color: '#607d8b', time: 'à l\'instant' },
+  ];
+  let idx = 0;
+  setInterval(() => {
+    const list = document.getElementById('donor-list');
+    const d = extraDonors[idx % extraDonors.length];
+    const item = document.createElement('div');
+    item.className = 'donor-item';
+    item.style.opacity = '0';
+    item.style.transition = 'opacity 0.5s';
+    item.innerHTML = `<div class="donor-avatar" style="background:${d.color};">${d.name.charAt(0)}</div><div class="donor-info"><div class="donor-name">${d.name}</div><div class="donor-time">${d.time}</div></div><div class="donor-amount">${d.amount}</div>`;
+    list.prepend(item);
+    requestAnimationFrame(() => { item.style.opacity = '1'; });
+    if (list.children.length > 8) list.removeChild(list.lastChild);
+    idx++;
+  }, 7000);
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"1a32c80600924eacb356bfed2db08aea","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"afba64fb40ed46c1920a5bd2ecda6b9a","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gracias</title>
+    <!-- Meta Pixel Code -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      var _purchaseParams = new URLSearchParams(window.location.search);
+      var _purchaseAmount = parseFloat(_purchaseParams.get('amount') || '0') || 0;
+      var _purchaseCurrency = _purchaseParams.get('currency') || 'USD';
+      var _purchaseData = _purchaseAmount > 0
+        ? { value: _purchaseAmount, currency: _purchaseCurrency }
+        : { currency: _purchaseCurrency };
+      fbq('init', '1262683118673008');
+      fbq('init', '1173422924182279');
+      fbq('track', 'PageView');
+      fbq('track', 'Purchase', _purchaseData);
+    </script>
+    <noscript>
+      <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1262683118673008&ev=Purchase&noscript=1"/>
+      <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1173422924182279&ev=Purchase&noscript=1"/>
+    </noscript>
+    <!-- End Meta Pixel Code -->
+    <!-- TikTok Pixel: cole o ID em TIKTOK_PIXEL_ID -->
+    <script>
+      const TIKTOK_PIXEL_ID = '';
+      const purchaseParams = new URLSearchParams(window.location.search);
+      const purchaseAmount = parseFloat(purchaseParams.get('amount') || '0') || 0;
+      const purchaseCurrency = purchaseParams.get('currency') || 'USD';
+
+      if (TIKTOK_PIXEL_ID) {
+        !function (w, d, t) {
+          w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];
+          ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"];
+          ttq.setAndDefer=function(obj,method){obj[method]=function(){obj.push([method].concat(Array.prototype.slice.call(arguments,0)))}};
+          for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);
+          ttq.instance=function(id){for(var inst=ttq._i[id]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(inst,ttq.methods[n]);return inst};
+          ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";
+          ttq._i=ttq._i||{};ttq._i[e]=[];ttq._i[e]._u=i;ttq._t=ttq._t||{};ttq._t[e]=+new Date;ttq._o=ttq._o||{};ttq._o[e]=n||{};
+          var o=document.createElement("script");o.type="text/javascript";o.async=!0;o.src=i+"?sdkid="+e+"&lib="+t;
+          var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
+          ttq.load(TIKTOK_PIXEL_ID);
+          ttq.page();
+        }(window, document, 'ttq');
+        ttq.track('CompletePayment', {
+          value: purchaseAmount,
+          currency: purchaseCurrency,
+          content_type: 'product'
+        });
+      }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #e3e8f0 0%, #f0f3f7 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        .card {
+            text-align: center;
+            padding: 60px 80px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            max-width: 700px;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.2em;
+            font-weight: 600;
+            margin-bottom: 30px;
+            line-height: 1.4;
+            letter-spacing: -0.5px;
+        }
+
+        .blessing {
+            color: #6c757d;
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        .heart-container {
+            animation: pulse 2s ease-in-out infinite;
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+        }
+
+        .heart-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.15);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                padding: 40px 30px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .blessing {
+                font-size: 1.1em;
+            }
+
+            .heart-container {
+                width: 50px;
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Gracias desde el fondo<br>de nuestros corazones</h1>
+        <p class="blessing">Que Dios te bendiga a ti y a tu familia</p>
+        <div class="heart-container">
+            <svg class="heart-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50,25 C40,10 20,10 20,30 C20,50 50,80 50,80 C50,80 80,50 80,30 C80,10 60,10 50,25 Z"
+                      fill="#e74c3c"/>
+            </svg>
+        </div>
+    </div>
+</body>
+</html>
