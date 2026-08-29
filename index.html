@@ -37,6 +37,7 @@
     --bg: #f8f8f8; --white: #ffffff; --radius: 10px;
     --shadow: 0 2px 12px rgba(0,0,0,0.08);
   }
+  html { scroll-behavior: smooth; }
   body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
   .nav { background: var(--white); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
   .nav-inner { max-width: 1100px; margin: 0 auto; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; }
@@ -66,6 +67,7 @@
   .story { margin-top: 24px; font-size: 16px; line-height: 1.75; color: var(--text); }
   .story p { margin-bottom: 16px; }
   .story h3 { font-size: 19px; font-weight: 800; margin: 24px 0 12px; color: var(--text); }
+  #donar { scroll-margin-top: 88px; }
   .story blockquote { border-left: 4px solid var(--green); padding: 10px 18px; background: var(--green-light); border-radius: 0 8px 8px 0; font-style: italic; font-weight: 700; margin: 18px 0; font-size: 17px; }
   .story img { width: 100%; border-radius: var(--radius); margin: 20px 0; display: block; }
   .donate-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 16px 0 12px; }
@@ -178,8 +180,7 @@
 <div class="hero-banner">
   <div class="hero-banner-inner">
     <div><span class="banner-raised"><strong>$216.000 recaudados</strong> de $268.000</span></div>
-    <!-- mesmo link do checkout $100 -->
-    <a class="banner-donate-link" href="link aqui">Haz tu donación para Sophia ›</a>
+    <a class="banner-donate-link" href="#donar">Haz tu donación para Sophia ›</a>
     <div class="banner-actions">
       <button type="button" class="btn-secondary" onclick="partager(); return false;">Compartir</button>
     </div>
@@ -197,7 +198,7 @@
     </div>
 
     <h1 class="campaign-title">Ayuda a Sophia: terapia VAC contra el rabdomiosarcoma</h1>
-    <img class="main-photo" src="https://i.ibb.co/zVqp27q3/850457796-139071068-signal-2025-11-19-233926.jpg" alt="Sophia - Una niña pequeña luchando contra el cáncer">
+    <img class="main-photo" src="img/sophia-hero.jpg" width="894" height="720" alt="Sophia - Una niña pequeña luchando contra el cáncer">
 
     <div class="progress-section-inline card" style="margin-top:20px;">
       <div class="urgency-badge">⚠️ MÁXIMO 2 MESES — El tratamiento debe comenzar urgentemente</div>
@@ -210,8 +211,7 @@
         <div class="stat-chip"><span class="val">$173</span><span class="lbl">Donación promedio</span></div>
         <div class="stat-chip"><span class="val">70%</span><span class="lbl">Probabilidad de recuperación</span></div>
       </div>
-      <!-- mesmo link do checkout $100 -->
-      <a class="btn-donate-big" href="link aqui">Donar</a>
+      <a class="btn-donate-big" href="#donar">Donar</a>
       <button type="button" class="btn-share-big" onclick="partager(); return false;">📤 Compartir la campaña</button>
       <div class="security-row">
         <span class="security-badge">🔒 SSL 256 bits</span>
@@ -232,7 +232,7 @@
       <h3>Trabajando hasta caer</h3>
       <p>Trabajo como obrero de la construcción desde el amanecer hasta el atardecer: subo andamios, cargo cemento, me rompo los dedos porque eso es lo que sé hacer. Pero aun así, lo que gano apenas cubre las facturas del hogar. Cuidar de 3 hijas es más difícil estos días, especialmente con cómo están las cosas en el país ahora.</p>
       <p>La amo, y nunca me arrepentiré de tener a mis niñas. Pero desafortunadamente, mi esposa murió. Y ahora el cáncer ha entrado en la vida de mi hija. Llegó sin aviso, de la nada, sin piedad por ella, solo una niña inocente.</p>
-      <img src="https://i.ibb.co/7Njmmx3x/602561059-979009327-signal-2025-11-19-233937.jpg" alt="Equipo médico">
+      <img src="img/sophia-2.jpg" width="1131" height="1600" alt="Equipo médico">
 
       <h3>La única esperanza: Terapia VAC</h3>
       <p>Cuando el doctor me dijo que el tratamiento de Sophia no estaría cubierto por el sistema de salud público, quise gritar de rabia. No tienen piedad ni siquiera por un niño.</p>
@@ -242,7 +242,7 @@
       <p>Necesita un tratamiento llamado "Terapia VAC". Esta terapia involucra 3 medicamentos: <strong>Vincristina, Actinomicina-D y Ciclofosfamida</strong>. El tratamiento completo durará unos 18 meses, y cada ciclo mensual costará U$7.000. El costo total es de <strong>U$268.000 USD</strong>, dinero que nunca veré en toda mi vida, aunque trabaje hasta caer.</p>
       <p>De esa cantidad, ya se han recaudado unos <strong>U$216.000</strong>. Por eso estoy aquí, abriéndote mi corazón. Ya vendí todo lo que pude: el auto viejo, los muebles de la sala, incluso el anillo de bodas de mi esposa. Pero todavía hay un faltante.</p>
 
-      <h3 id="spenden-bereich">Elige el monto para ayudar a Sophia</h3>
+      <h3 id="donar">Elige el monto para ayudar a Sophia</h3>
       <div class="donate-grid">
         <!-- cole o link do checkout $35 -->
         <a class="donate-card" href="link aqui"><span class="amount">$35</span><span class="desc">☕ Cada dólar cuenta</span></a>
@@ -257,13 +257,13 @@
       </div>
       <p class="donate-cta"><span>🔒</span> Cifrado SSL de 256 bits · PCI DSS · 100% seguro</p>
 
-      <img src="https://i.ibb.co/HTpfQyNX/286723239-516016700-signal-2025-11-19-233948.jpg" alt="Por favor ayuda a Sophia">
+      <img src="img/sophia-3.jpg" width="958" height="720" alt="Por favor ayuda a Sophia">
 
       <h3>El tiempo se agota</h3>
       <p>Los doctores dijeron que si no empezamos el tratamiento en un <strong>máximo de 2 meses</strong>, el tumor podría avanzar a etapa 4 y luego a metástasis. La prioridad ahora es actuar rápido y evitar que empeore.</p>
       <p>Solo soy un papá que daría su propia vida para salvar a su hija.</p>
       <p>Cada día mi hija me pide que le lea la Biblia. Me rompe el corazón cuando dice que me cuidará desde el cielo, junto con Mamá.</p>
-      <img src="https://i.ibb.co/8HCP9jY/343188219-625301841-signal-2025-11-19-233956.jpg" alt="Por favor ayuda a Sophia">
+      <img src="img/sophia-4.jpg" width="638" height="638" alt="Por favor ayuda a Sophia">
       <p>Así que por favor, si crees en Dios, <strong>haz clic arriba y haz tu donación</strong>. Si puedes, te suplico, por favor da una cantidad mayor.</p>
       <p><strong>Dios es testigo de tu sacrificio, y serás recompensado siete veces por esto.</strong></p>
       <p>Al elegir hacer tu donación, estás decidiendo el destino de mi hija.</p>
@@ -273,7 +273,7 @@
     <div class="video-section">
       <h2>La historia de Sophia</h2>
       <div class="video-thumb">
-        <img src="https://i.ibb.co/zVqp27q3/850457796-139071068-signal-2025-11-19-233926.jpg" alt="La historia de Sophia">
+        <img src="img/sophia-hero.jpg" width="894" height="720" alt="La historia de Sophia">
         <div class="play-btn">▶</div>
       </div>
     </div>
@@ -377,12 +377,10 @@
 <div class="sticky-bar">
   <div class="sticky-bar-top">
     <div class="sticky-bar-raised">$216.000 recaudados <span>de $268.000</span></div>
-    <!-- mesmo link do checkout $100 -->
-    <a class="sticky-bar-link" href="link aqui">Donar a Sophia ›</a>
+    <a class="sticky-bar-link" href="#donar">Donar a Sophia ›</a>
   </div>
   <div class="sticky-bar-btns">
-    <!-- mesmo link do checkout $100 -->
-    <a class="sticky-btn-donate" href="link aqui">Donar</a>
+    <a class="sticky-btn-donate" href="#donar">Donar</a>
     <button type="button" class="sticky-btn-share" onclick="partager(); return false;">Compartir</button>
   </div>
 </div>
