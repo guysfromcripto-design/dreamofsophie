@@ -21,44 +21,30 @@
       var _purchaseData = _purchaseAmount > 0
         ? { value: _purchaseAmount, currency: _purchaseCurrency }
         : { currency: _purchaseCurrency };
+      var _eventId = 'purchase_' + Date.now() + '_' + Math.random().toString(16).slice(2);
+      function _cookie(name) {
+        var m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+        return m ? decodeURIComponent(m[1]) : '';
+      }
       fbq('init', '1262683118673008');
-      fbq('init', '1173422924182279');
       fbq('track', 'PageView');
-      fbq('track', 'Purchase', _purchaseData);
+      fbq('track', 'Purchase', _purchaseData, { eventID: _eventId });
+      fetch('/api/fb-purchase', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          event_id: _eventId,
+          value: _purchaseAmount,
+          currency: _purchaseCurrency,
+          fbp: _cookie('_fbp'),
+          fbc: _cookie('_fbc') || _purchaseParams.get('fbclid') || ''
+        })
+      }).catch(function () {});
     </script>
     <noscript>
       <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1262683118673008&ev=Purchase&noscript=1"/>
-      <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1173422924182279&ev=Purchase&noscript=1"/>
     </noscript>
     <!-- End Meta Pixel Code -->
-    <!-- TikTok Pixel: cole o ID em TIKTOK_PIXEL_ID -->
-    <script>
-      const TIKTOK_PIXEL_ID = '';
-      const purchaseParams = new URLSearchParams(window.location.search);
-      const purchaseAmount = parseFloat(purchaseParams.get('amount') || '0') || 0;
-      const purchaseCurrency = purchaseParams.get('currency') || 'USD';
-
-      if (TIKTOK_PIXEL_ID) {
-        !function (w, d, t) {
-          w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];
-          ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"];
-          ttq.setAndDefer=function(obj,method){obj[method]=function(){obj.push([method].concat(Array.prototype.slice.call(arguments,0)))}};
-          for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);
-          ttq.instance=function(id){for(var inst=ttq._i[id]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(inst,ttq.methods[n]);return inst};
-          ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";
-          ttq._i=ttq._i||{};ttq._i[e]=[];ttq._i[e]._u=i;ttq._t=ttq._t||{};ttq._t[e]=+new Date;ttq._o=ttq._o||{};ttq._o[e]=n||{};
-          var o=document.createElement("script");o.type="text/javascript";o.async=!0;o.src=i+"?sdkid="+e+"&lib="+t;
-          var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
-          ttq.load(TIKTOK_PIXEL_ID);
-          ttq.page();
-        }(window, document, 'ttq');
-        ttq.track('CompletePayment', {
-          value: purchaseAmount,
-          currency: purchaseCurrency,
-          content_type: 'product'
-        });
-      }
-    </script>
     <style>
         * {
             margin: 0;
